@@ -15,8 +15,15 @@ public class Dice {
 	}
 
 	public int next(int min, int max) {
-		int range = max - min;
+		int range = max - min + 1;
 		return min + random.nextInt(range);
+	}
+
+	public static void main(String a[]) {
+		Dice dice = Dice.getInstance();
+		for (int i = 0; i < 20; i++) {
+			System.out.println(dice.next(10, 15));
+		}
 	}
 
 }

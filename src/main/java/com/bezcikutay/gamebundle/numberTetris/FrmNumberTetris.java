@@ -219,6 +219,15 @@ public class FrmNumberTetris extends FrmGame {
 			game.subTurn();
 			if (game.getState() == State.Playing) {
 				timer.stop();
+				if (backup.getInputMax() != game.getInputMax() || backup.getInputMin() != game.getInputMin()) {
+					StringBuilder sb = new StringBuilder();
+					sb.append(translate.translate("GameInputChanged"));
+					sb.append(String.format("(%d-%d)=>(%d-%d)", //
+							backup.getInputMin(), backup.getInputMax(), //
+							game.getInputMin(), game.getInputMax()));
+					logger.info(sb.toString());
+					JOptionPane.showMessageDialog(this, sb.toString());
+				}
 			}
 			refreshView();
 			if (game.getState() == State.GameOver) {

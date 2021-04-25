@@ -175,6 +175,7 @@ public class Game {
 					currentMaxValue = mergeValue;
 					if (currentMaxValue > inputMin + distinctNumberCount) {
 						inputMin++;
+						inputMax++;
 					}
 				}
 				this.gameBoard.setValue(boardIndex, mergeValue);
