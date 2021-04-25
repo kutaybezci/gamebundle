@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Stack;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bezcikutay.gamebundle.core.BoardIndex;
 import com.bezcikutay.gamebundle.core.Dice;
 
 public class Game {
+	private static final Logger logger = LoggerFactory.getLogger(Game.class);
 	private int score;
 	private int special;
 	private int inputMin;
@@ -115,6 +119,26 @@ public class Game {
 		state = State.InTurn;
 	}
 
+	public void logBoard() {
+		StringBuilder sb = new StringBuilder(System.lineSeparator());
+		for (int c = 0; c < gameBoard.getColumnCount(); c++) {
+			List<Integer> col = gameBoard.getColumn(c);
+			for (int r = 0; r < col.size(); r++) {
+				sb.append(String.format("%5d", col.get(r)));
+			}
+			sb.append(System.lineSeparator());
+		}
+		sb.append("CS:");
+		for (BoardIndex bi : changeStack) {
+			sb.append("r:");
+			sb.append(bi.getRow());
+			sb.append("c:");
+			sb.append(bi.getColumn());
+			sb.append(" ");
+		}
+		logger.info(sb.toString());
+	}
+
 	public synchronized void subTurn() {
 		if (changeStack.isEmpty()) {
 			Optional<BoardIndex> lessThanMin = getLessThanMin();
@@ -134,6 +158,7 @@ public class Game {
 		if (!gameBoard.contains(boardIndex)) {
 			return;
 		}
+		logBoard();
 		int value = this.gameBoard.getValue(boardIndex);
 		List<BoardIndex> neighbours = gameBoard.getNeighbours(boardIndex);
 		List<BoardIndex> toBeRemoveds = new ArrayList<>();
@@ -144,12 +169,10 @@ public class Game {
 				this.score += value;
 				changeStack.push(neighbour);
 				changeStack.push(boardIndex);
-
 				int mergeValue = gameBoard.getValue(boardIndex) + 1;
 				if (mergeValue > currentMaxValue) {
 					this.special += mergeValue - currentMaxValue;
 					currentMaxValue = mergeValue;
-
 					if (currentMaxValue > inputMin + distinctNumberCount) {
 						inputMin++;
 					}

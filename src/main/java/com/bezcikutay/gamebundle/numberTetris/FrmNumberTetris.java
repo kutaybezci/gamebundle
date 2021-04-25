@@ -17,6 +17,7 @@ import com.bezcikutay.gamebundle.core.BoardSquarePresentation;
 import com.bezcikutay.gamebundle.core.FrmGame;
 import com.bezcikutay.gamebundle.core.FrmScoreBoard;
 import com.bezcikutay.gamebundle.core.GameConfig;
+import com.google.gson.Gson;
 
 public class FrmNumberTetris extends FrmGame {
 	private static final long serialVersionUID = -2069542008642361175L;
@@ -192,9 +193,11 @@ public class FrmNumberTetris extends FrmGame {
 				if (checkSelectedSquare(boardIndex)) {
 					game.crush(boardSquare.getIndex());
 					timer.start();
+
 				}
 			} else {
 				backup = game.copy();
+				logger.info(new Gson().toJson(game));
 				game.startTurn(boardSquare.getIndex().getColumn());
 				timer.start();
 			}

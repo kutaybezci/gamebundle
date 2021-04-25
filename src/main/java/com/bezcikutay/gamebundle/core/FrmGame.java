@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.net.URL;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class FrmGame extends JFrame {
 	private static final long serialVersionUID = 6424513867293559783L;
-	private static final Logger logger = LoggerFactory.getLogger(FrmGame.class);
+	protected static final Logger logger = LoggerFactory.getLogger(FrmGame.class);
 	protected Translate translate = Translate.getInstance();
 	protected GameConfig gameConfig;
 	protected Board board;
@@ -41,9 +39,6 @@ public abstract class FrmGame extends JFrame {
 		logger.info("New game started:{}", gameConfig.getTitle());
 		setResizable(false);
 		setTitle(translate.translate(gameConfig.getTitle()));
-		URL url = getClass().getClassLoader().getResource(gameConfig.getTitle() + ".ico");
-		ImageIcon icon = new ImageIcon(url);
-		setIconImage(icon.getImage());
 		getContentPane().setBackground(gameConfig.getBackground());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setPreferredSize(gameConfig.getGameSize());

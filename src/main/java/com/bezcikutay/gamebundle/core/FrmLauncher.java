@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ public class FrmLauncher extends JFrame {
 	private static final long serialVersionUID = 7018740048852281096L;
 	private Translate translate = Translate.getInstance();
 
-	public FrmLauncher() {
+	public FrmLauncher() throws IOException {
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(200, 200));
@@ -44,7 +45,7 @@ public class FrmLauncher extends JFrame {
 		pack();
 	}
 
-	public static void main(String a[]) {
+	public static void main(String a[]) throws IOException {
 		new FrmLauncher().setVisible(true);
 	}
 
