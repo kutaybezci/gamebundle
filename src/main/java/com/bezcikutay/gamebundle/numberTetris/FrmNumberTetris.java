@@ -36,6 +36,7 @@ public class FrmNumberTetris extends FrmGame {
 		addTimer();
 		fillMenu();
 		createGame();
+		nextNumber = new BoardIndex(game.getGameBoard().getMaxRowCount() - 1, game.getGameBoard().getColumnCount() / 2);
 		refreshView();
 		setVisible(true);
 	}
@@ -146,10 +147,13 @@ public class FrmNumberTetris extends FrmGame {
 				board.paintSquare(bi, presentation);
 			}
 		}
-		BoardSquarePresentation nextPresentation = painter.getPresentation(game.getNextNumber());
-		BoardIndex nextIndex = new BoardIndex(game.getGameBoard().getMaxRowCount() - 1,
-				game.getGameBoard().getColumnCount() / 2);
-		board.paintSquare(nextIndex, nextPresentation);
+		/*
+		 * BoardSquarePresentation nextPresentation =
+		 * painter.getPresentation(game.getNextNumber()); BoardIndex nextIndex = new
+		 * BoardIndex(game.getGameBoard().getMaxRowCount() - 1,
+		 * game.getGameBoard().getColumnCount() / 2); board.paintSquare(nextIndex,
+		 * nextPresentation);
+		 */
 	}
 
 	public void refreshView() {
