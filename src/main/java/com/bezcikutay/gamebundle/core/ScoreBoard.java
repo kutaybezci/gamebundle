@@ -1,4 +1,4 @@
-package com.bezcikutay.gamebundle.backend.scoreboard;
+package com.bezcikutay.gamebundle.core;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,6 +18,7 @@ public class ScoreBoard {
 	}
 
 	public List<ScoreItem> getScoreItemList() {
+		normalize();
 		return scoreItemList;
 	}
 
@@ -30,7 +31,7 @@ public class ScoreBoard {
 	}
 
 	public void normalize() {
-		scoreItemList.sort(Comparator.comparing(ScoreItem::getScore));
+		scoreItemList.sort(Comparator.comparing(ScoreItem::getScore).reversed());
 		if (scoreItemList.size() > MAX_SCORE_SIZE) {
 			this.scoreItemList = scoreItemList.subList(0, MAX_SCORE_SIZE);
 		}

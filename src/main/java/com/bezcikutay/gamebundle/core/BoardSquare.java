@@ -1,12 +1,10 @@
-package com.bezcikutay.gamebundle.frontend.board;
+package com.bezcikutay.gamebundle.core;
 
 import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import com.bezcikutay.gamebundle.backend.BoardIndex;
 
 public class BoardSquare extends JPanel {
 	private static final long serialVersionUID = 238541079917828967L;

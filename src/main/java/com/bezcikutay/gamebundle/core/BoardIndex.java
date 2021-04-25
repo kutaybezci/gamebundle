@@ -1,4 +1,4 @@
-package com.bezcikutay.gamebundle.backend;
+package com.bezcikutay.gamebundle.core;
 
 public class BoardIndex {
 	private int row;
@@ -30,11 +30,22 @@ public class BoardIndex {
 	}
 
 	public boolean equals(BoardIndex boardIndex) {
+		if (boardIndex == null) {
+			return false;
+		}
 		return this.row == boardIndex.row && this.column == boardIndex.column;
 	}
 
 	public void move(int rowDiff, int columnDiff) {
 		this.row += rowDiff;
 		this.column += columnDiff;
+	}
+
+	public BoardIndex minus(BoardIndex boardIndex) {
+		return new BoardIndex(this.row - boardIndex.row, this.column - boardIndex.column);
+	}
+
+	public BoardIndex plus(BoardIndex boardIndex) {
+		return new BoardIndex(this.row + boardIndex.row, this.column + boardIndex.column);
 	}
 }

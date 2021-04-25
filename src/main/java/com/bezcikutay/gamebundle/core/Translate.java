@@ -1,4 +1,4 @@
-package com.bezcikutay.gamebundle.backend;
+package com.bezcikutay.gamebundle.core;
 
 import java.io.File;
 import java.io.FileInputStream;

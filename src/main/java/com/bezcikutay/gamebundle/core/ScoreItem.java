@@ -1,4 +1,4 @@
-package com.bezcikutay.gamebundle.backend.scoreboard;
+package com.bezcikutay.gamebundle.core;
 
 import java.util.Date;
 

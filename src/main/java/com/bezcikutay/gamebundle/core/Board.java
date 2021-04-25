@@ -1,15 +1,11 @@
-package com.bezcikutay.gamebundle.frontend.board;
+package com.bezcikutay.gamebundle.core;
 
-import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import com.bezcikutay.gamebundle.backend.BoardIndex;
-import com.bezcikutay.gamebundle.frontend.numberTetris.SquarePainter;
 
 public class Board extends JPanel {
 	private static final long serialVersionUID = -604188851670197275L;
@@ -38,18 +34,17 @@ public class Board extends JPanel {
 		}
 	}
 
-	public static void main(String arg[]) {
-		JFrame jFrame = new JFrame();
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
-		jFrame.setPreferredSize(new Dimension(500, 500));
-		jFrame.setResizable(false);
-		BoardSquarePresentation presentation = SquarePainter.getInstance().getPresentation(3);
-		presentation.setBorder(Color.white);
-		Board board = new Board(50, new BoardIndex(7, 5), presentation);
-		jFrame.add(board);
-		jFrame.pack();
-		jFrame.setVisible(true);
+	public BoardSquare choose(Point point) {
+		Component component = getComponentAt(point);
+		if (component != null && component instanceof BoardSquare) {
+			return (BoardSquare) component;
+		}
+		return null;
 	}
 
+	public void paintSquare(BoardIndex boardIndex, BoardSquarePresentation presentation) {
+		BoardSquare square = squares2d[boardIndex.getRow()][boardIndex.getColumn()];
+		square.setPresentation(presentation);
+		square.paint();
+	}
 }

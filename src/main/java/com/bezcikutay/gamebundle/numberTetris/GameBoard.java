@@ -1,9 +1,9 @@
-package com.bezcikutay.gamebundle.backend.numberTetris;
+package com.bezcikutay.gamebundle.numberTetris;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bezcikutay.gamebundle.backend.BoardIndex;
+import com.bezcikutay.gamebundle.core.BoardIndex;
 
 public class GameBoard {
 	private int maxRowCount;
@@ -97,5 +97,13 @@ public class GameBoard {
 	public boolean canPush(int column, int value) {
 		List<Integer> boardColumn = getColumn(column);
 		return boardColumn.size() < this.maxRowCount - 1 || value == top(column);
+	}
+
+	public GameBoard copy() {
+		GameBoard gameBoard = new GameBoard(maxRowCount, boardColumnList.size());
+		for (int c = 0; c < boardColumnList.size(); c++) {
+			gameBoard.getColumn(c).addAll(boardColumnList.get(c));
+		}
+		return gameBoard;
 	}
 }

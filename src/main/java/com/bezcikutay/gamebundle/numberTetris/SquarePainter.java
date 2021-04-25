@@ -1,8 +1,9 @@
-package com.bezcikutay.gamebundle.frontend.numberTetris;
+package com.bezcikutay.gamebundle.numberTetris;
 
 import java.awt.Color;
 
-import com.bezcikutay.gamebundle.frontend.board.BoardSquarePresentation;
+import com.bezcikutay.gamebundle.core.BoardSquarePresentation;
+import com.bezcikutay.gamebundle.core.Palette;
 
 public class SquarePainter {
 	private static final SquarePainter INSTANCE = new SquarePainter();
@@ -23,8 +24,7 @@ public class SquarePainter {
 		presentation.setText("");
 		if (value > 0) {
 			presentation.setText(String.valueOf(value));
-			int colorOrder = value % GameConfig.DISTINCT_COLORS.length;
-			Color color = GameConfig.DISTINCT_COLORS[colorOrder];
+			Color color = Palette.getInstance().getColor(value);
 			presentation.setBackGround(color);
 			presentation.setBorder(color);
 		}

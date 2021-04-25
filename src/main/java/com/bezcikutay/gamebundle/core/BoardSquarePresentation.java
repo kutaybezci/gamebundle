@@ -1,4 +1,4 @@
-package com.bezcikutay.gamebundle.frontend.board;
+package com.bezcikutay.gamebundle.core;
 
 import java.awt.Color;
 

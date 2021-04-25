@@ -1,5 +1,6 @@
-package com.bezcikutay.gamebundle.frontend;
+package com.bezcikutay.gamebundle.core;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.text.SimpleDateFormat;
@@ -8,11 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import com.bezcikutay.gamebundle.backend.Translate;
-import com.bezcikutay.gamebundle.backend.scoreboard.ScoreBoard;
-import com.bezcikutay.gamebundle.backend.scoreboard.ScoreItem;
-import com.bezcikutay.gamebundle.frontend.numberTetris.GameConfig;
 
 public class FrmScoreBoard extends JFrame {
 
@@ -23,7 +19,7 @@ public class FrmScoreBoard extends JFrame {
 
 		setPreferredSize(new Dimension(750, 500));
 		setTitle(scoreBoard.getGameName());
-		getContentPane().setBackground(GameConfig.BACKGROUND);
+		getContentPane().setBackground(Color.white);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setLayout(new FlowLayout());
@@ -39,7 +35,7 @@ public class FrmScoreBoard extends JFrame {
 			data[r] = row;
 		}
 		JTable table = new JTable(data, columnNames);
-		table.setBackground(GameConfig.BACKGROUND);
+		table.setBackground(Color.white);
 		table.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.setViewportView(table);
 		scrollPane.setPreferredSize(new Dimension(750, 500));
